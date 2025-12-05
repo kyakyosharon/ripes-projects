@@ -7,7 +7,7 @@
 
     # Reserve 4 KB so all offsets are valid
 base_addr:
-    .space 4096
+    .zero 4096
 
 .text
 .globl main
@@ -18,8 +18,14 @@ main:
 conflict_loop:
     lw  t1, OFFSET_A(s0)     # Access A: base + 0
     lw  t2, OFFSET_B(s0)     # Access B: base + 1024
-    lw  t3, OFFSET_C(s0)     # Access C: base + 2048
-    lw  t4, OFFSET_D(s0)     # Access D: base + 3072
+    # OFFSET_C (2048) and OFFSET_D (3072) exceed 12-bit immediate range (-2048 to 2047)
+    li  t5, OFFSET_C
+    add t5, s0, t5
+    lw  t3, 0(t5)        # Access C
+
+    li  t6, OFFSET_D
+    add t6, s0, t6
+    lw  t4, 0(t6)        # Access D
 
     addi t0, t0, -1          # t0--
     bnez t0, conflict_loop   # repeat until t0 == 0
