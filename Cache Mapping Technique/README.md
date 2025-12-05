@@ -54,8 +54,8 @@ You’ll run **two configurations** with the **same program**.
 
 #### Config A: Direct-Mapped Cache (1-Way)
 
-1. Open **Component/Processor Configuration** (gear icon ⚙️).
-2. In the **Data Cache (D-Cache)** section:
+1. In the left-hand panel, click the **Memory** tab.
+2. Scroll down to the **Data Cache** section:
 
    * Enable D-Cache: ✅
    * **Cache size:** `1024 B` (1 KiB)
@@ -68,8 +68,8 @@ You’ll run **two configurations** with the **same program**.
 
 After testing Config A, **change only associativity**:
 
-1. Open **Component/Processor Configuration** again.
-2. In **D-Cache**:
+1. Go back to the **Memory** tab.
+2. In **Data Cache**:
 
    * **Cache size:** `1024 B`
    * **Block / line size:** `32 B`
